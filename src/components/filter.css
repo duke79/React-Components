@@ -1,0 +1,45 @@
+.title {
+}
+
+.searchbar {
+    line-height: 31px;
+    border-radius: 6px;
+    border-color: #0c0c0c1f;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 7px;
+}
+
+.searchbar:active {
+    box-shadow: 0 0 4px 2px #0094fd54;
+}
+
+.option {
+    position: relative;
+    cursor: pointer;
+    margin-left: 30px;
+    font-weight: 100;
+}
+
+.checked {
+    font-weight: 600;
+}
+
+.option_icon {
+    position: absolute;
+    left: -24px;
+    top: 10px;
+}
+
+.filter_footer{
+    white-space:nowrap;
+}
+
+.footer_btn {
+    margin-right: 5px;
+}
+
+.highlighted_character {
+    /*font-style: italic;*/
+    background-color: #6a737d52;
+}

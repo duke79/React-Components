@@ -1,6 +1,10 @@
-/**
- * Created by c6z on 11/2/2018.
- */
+import React from 'react';
+import $ from 'jquery'
+import Table from '../Table/table'
+import styles from './filter.css'
+import fa_styles from '../../lib/font-awesome/css/font-awesome.min.css';
+import bootstrap_styles from '../../lib/bootstrap/css/bootstrap.min.css';
+import {css_module_classes} from "../../lib/utils";
 
 
 class Filter extends React.Component {
@@ -17,7 +21,7 @@ class Filter extends React.Component {
     }
 
     on_option_clicked(e) {
-        // console.log(this.props.options);
+        console.log(this.props.options);
         let options = {};
         Object.keys(this.props.options).forEach(option_key => {
             let option_val = this.props.options[option_key];
@@ -75,14 +79,14 @@ class Filter extends React.Component {
 
     Header() {
         return [
-            <input className="searchbar"
+            <input className={css_module_classes(true, styles, "searchbar")}
                    value={this.state.query}
                    onChange={this.on_query_updated}/>
         ];
     }
 
     highlight_characters(target, substr) {
-        if (substr.length == 0)
+        if (substr.length === 0)
             return target;
 
         let ret = [];
@@ -110,7 +114,7 @@ class Filter extends React.Component {
 
             if (b_highlight) {
                 ret.push(
-                    <span className="highlighted_character">{char}</span>
+                    <span className={css_module_classes(true, styles, "highlighted_character")}>{char}</span>
                 );
             }
             else {
@@ -140,13 +144,13 @@ class Filter extends React.Component {
                 let option_classes = "option";
                 let icon = <div/>;
                 if (option_val === true) {
-                    icon = <i className="fa fa-check option_icon"/>;
+                    icon = <i className={css_module_classes(true, fa_styles, "fa fa-check") + " " + css_module_classes(true, styles, "option_icon")}/>;
                     option_classes += " checked"
                 }
 
                 if (option_key.toLowerCase().includes(this.state.query.toLowerCase())) {
                     rows.push([
-                        <div className={option_classes}
+                        <div className={css_module_classes(true, styles, option_classes)}
                              onClick={_this.on_option_clicked}>
                             {icon}
                             {this.highlight_characters(option_key, this.state.query)}
@@ -159,19 +163,19 @@ class Filter extends React.Component {
     }
 
     Footer() {
-        return <div className="filter_footer">
-            {/*<a className="btn btn-danger footer_btn"*/}
-               {/*onClick={() => this.on_apply_all(false)}>*/}
-                {/*clear all*/}
+        return <div className={css_module_classes(true, styles, "filter_footer")}>
+            {/*<a className={css_module_classes(true, styles, "btn btn-danger footer_btn")}*/}
+            {/*onClick={() => this.on_apply_all(false)}>*/}
+            {/*clear all*/}
             {/*</a>*/}
-            <a className="btn btn-primary footer_btn"
+            <button className={css_module_classes(true, bootstrap_styles, "btn btn-primary") + " " + css_module_classes(true, styles, "footer_btn")}
                onClick={() => this.on_apply_all(true)}>
                 select all
-            </a>
-            <a className="btn btn-info footer_btn"
+            </button>
+            <button className={css_module_classes(true, bootstrap_styles, "btn btn-info") + " " + css_module_classes(true, styles, "footer_btn")}
                onClick={() => this.on_invert_selection()}>
                 invert selection
-            </a>
+            </button>
         </div>;
     }
 
@@ -189,7 +193,7 @@ class Filter extends React.Component {
 }
 
 Filter.defaultProps = {
-    title: <div className="title"><b>Filter</b></div>,
+    title: <div className={css_module_classes(true, styles, "title")}><b>Filter</b></div>,
     primary_buttons: [],
     options: {
         "Row1": true,
@@ -197,3 +201,5 @@ Filter.defaultProps = {
     },
     on_options_updated: null,
 };
+
+export default Filter;

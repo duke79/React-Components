@@ -1,0 +1,13 @@
+.collapse{
+    display: block;
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0!important;
+    transition: max-height .5s cubic-bezier(0, 1, 0, 1);
+}
+
+.show {
+    max-height: 99em;
+    overflow: hidden;
+    transition: max-height .5s ease-in-out;
+}
